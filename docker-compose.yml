@@ -1,0 +1,45 @@
+services:
+  nginx:
+    image: nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+
+  redis:
+    image: redis
+    ports:
+      - 8001:6379    
+  
+  server1:
+    build: ./server
+    env_file:
+      - server/.env
+    environment:
+      - serverName="first"
+
+    ports:
+      - 7001:7000
+
+  server2:
+    build: ./server
+    env_file:
+      - server/.env
+    environment:
+      - serverName="second"        
+
+    ports:
+      - 7002:7000
+
+  server3:
+    build: ./server
+    env_file:
+      - server/.env
+    environment:
+      - serverName="third"      
+    ports:
+      - 7003:7000    
+
+      
+      
+    
