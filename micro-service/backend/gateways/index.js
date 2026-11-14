@@ -14,9 +14,9 @@ app.get("/",(req,res)=>{
     return res.status(200).json({message:`This is ${process.env.ser_name}`})
 })
 
-app.use("/auth",proxy("http://localhost:3001"))
-app.use("/order",proxy("http://localhost:3002"))
-app.use("/product",proxy("http://localhost:3003"))
+app.use("/auth",proxy("http://auth-service:3001"))
+app.use("/order",proxy("http://order-service:3002"))
+app.use("/product",proxy("http://product-service:3003"))
 
 app.listen(port,()=>{
     console.log(`server started ${port}`)
